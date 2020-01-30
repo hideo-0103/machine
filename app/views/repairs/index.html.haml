@@ -1,0 +1,41 @@
+.border-bottom.py-3.mb-5.bg-dark
+  .d-flex.align-content-between
+    .ml-3
+      = icon('fas', 'angle-double-left', class: 'icon text-white')
+      = link_to "戻る","/machines/#{@machine.id}",class: 'text-white p-2 '
+  
+.card.container.mt-5
+  %h1.text-center.py-3
+    = @machine.name + "の修復履歴"
+  - if @machine.repairs == []
+    %p.text-center まだ修復歴が登録されていません。
+  - else
+    .row
+      .col-2.border
+        ID
+      .col-2.border
+        作成日時
+      .col.border
+        タイトル
+      .col-2.border
+        編集
+      .col-2.border
+        %a 削除
+    
+    - @repairs.each do |repair|
+      .row
+        .col-2.border
+          %a.py-1.m-0
+            No.
+            = repair.id
+        .col-2.border
+          %a.py-1.m-0
+            = repair.created_at.strftime('%Y/%m/%d')
+        .col.border
+          = link_to "#{repair.title}","/machines/#{@machine.id}/repairs/#{repair.id}.pdf"
+        .col-2.border
+          = icon('fas', 'cog', class: 'icon')
+          = link_to "編集","/repairs/#{repair.id}/edit"
+        .col-2.border
+          = link_to content_tag(:i,"", class: 'far fa-trash-alt text-dark'),"/machines/#{@machine.id}/repairs/#{repair.id}", method: :delete
+    

@@ -1,0 +1,88 @@
+.wrapper{
+  background-color: cornsilk;
+  width:100vw;
+  overflow: scroll;
+  .header{
+    height: 50px;
+    width: 100%;
+    
+  }
+  .repair{
+    background-color: white;
+    height: calc(100% - 90px);
+    width: 70%;
+    margin: 0 auto;
+    border: 3px solid black;
+    &__title{
+      // margin: 0 auto;
+      text-align: center;
+      border-bottom: 3px solid black;
+      h1{
+        font-size: 40px;
+      }
+    }
+    &__header{
+      display: flex;
+      height: 70px;
+      border-bottom: 3px solid black;
+      &--user{
+        width: calc(100% - 180px);
+        font-size: 25px;
+        line-height: 70px;
+        display: flex;
+        p.label{
+          text-align: center;
+          width: 180px;
+          border-right: 3px solid black;
+        }
+        p.name{
+          margin-left: 15px;
+        }
+      }
+      &__right{
+        width: 180px;
+        height: 100%;
+        border-left: 3px solid black;
+        &--id{
+          // padding-left: 10px;
+          height: 50%;
+          line-height: 35px;
+          border-bottom: 3px solid black;
+          p{
+            margin-left: 10px;
+          }
+        }
+        &--date{
+          height: 50%;
+          line-height: 35px;
+          p{
+            margin-left: 10px;
+          }
+        }
+
+      }
+    }
+    &__contentbox{
+      
+      &__upper{
+        display: flex;
+        height: 70px;
+        border-bottom: 3px solid black;
+        line-height: 70px;
+        font-size: 25px;
+        &--label{
+          width: 180px;
+          text-align: center;
+          border-right: 3px solid black;
+        }
+        &--title {
+          padding-left: 10px;
+        }
+      }
+      &__bottom{
+        height: 100%;
+        padding: 15px;
+      }
+    }
+  }
+}

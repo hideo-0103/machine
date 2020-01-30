@@ -1,0 +1,21 @@
+.dropdown.float-left.my-auto
+  %a#dropdownMenuButton.text-white.d-inline-block.ml-3.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :type => "button"}
+    メニュー
+  .dropdown-menu.p-0{"aria-labelledby" => "dropdownMenuButton"}
+    %ul.list-group.m-auto.p-0
+      %li.list-group-item.border-right-0.bg-light
+        %p.text-center.h3
+          メニュー
+      %li.list-group-item.border-right-0
+        = icon('fas', 'cog', class: 'icon')
+        = link_to "ユーザー情報の編集",edit_user_path(current_user)
+      %li.list-group-item.border-right-0
+        = icon('fas', 'robot', class: 'icon')
+        = link_to "設備の登録", "/machines/new"
+      %li.list-group-item.border-right-0
+        = icon('fas', 'cog', class: 'icon')
+        = link_to "部品の登録", "/parts/new"
+      %li.list-group-item.border-right-0
+        = icon('fas', 'plus-square', class: 'icon')
+        = link_to "部品の補充", "/parts"
+  

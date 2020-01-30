@@ -1,0 +1,46 @@
+.border-bottom.py-3.mb-5.bg-dark
+  .d-flex.align-content-between
+    .ml-3
+      = icon('fas', 'angle-double-left', class: 'icon text-white')
+      =link_to "トップページ", "/",class:"py-2 rounded my-auto text-white"
+.container.border.px-0.mb-5
+  .h4.text-center.mt-3 修復歴編集
+  %section.p-5.mt-3.card
+    .container.card-body
+    .h4.text-center 修復歴の編集
+    %ul.nav.nav-tabs.my-5
+      %li.nav-item
+        %li 
+          .nav-link.bg-light STEP1：フォーム入力
+        %li.nav-item
+          .nav-link.active  STEP2：使用部品登録
+    .border-bottom.text-center
+      .h3.mb-3.pb-3
+        注意事項
+      %p
+        どこがどうなっていたのか、なぜそうなったのか、どう対処したのかを明確に記述してください。
+        
+    = form_for @repair do |f|
+      .form__main__title
+        %p
+          修復箇所
+        .form__main__title--title-form
+          = f.text_field :title,placeholder: `#{@repair.title}`,class:'form-control'
+        .border-bottom.py-3.mb-5
+        .d-flex.align-items-center
+          %p{:style => "width: 20%;"}
+            修復内容
+          = f.text_area :text,placeholder: `#{@repair.text}`,class:'form-control'
+        .border-bottom.py-3.mb-5
+        %p{:style => "width: 20%;"}
+          使用部品      
+        = f.fields_for :parts do |p|
+          %p
+            = p.object.name
+          %p
+            在庫数：
+            = p.object.quentity
+          = p.number_field :replenishment, step: 1, value: 0, max: 0,class:'form-control'
+          .border-bottom.py-3.mb-5
+
+      = f.submit '保存', class: 'btn-block p-3 btn btn-lg btn-primary mt-5'

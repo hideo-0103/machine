@@ -1,0 +1,4 @@
+.b
+  = link_to "/machines/#{@machine.id}/images/#{image.id}" do
+    -# = image_tag "#{image.image}", class: "c mx-auto"
+    %img.c.mx-auto{:src => "#{image.image}"}/

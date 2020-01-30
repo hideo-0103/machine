@@ -1,0 +1,42 @@
+.card.container.my-5.px-0
+  .header.mb-5.border-bottom.py-3.bg-light
+    %h1.text-center
+      設備登録
+  .form.px-3
+    = form_for @machine do |f|
+      .form-group.ml-3
+        = f.label :name,"設備名"
+        = f.text_field :name,placeholder: '設備名を入力してください',class: 'form-control mb-5'
+      .border-top
+        = f.label :name,"図面の登録",class:'ml-3 pt-5'
+      .form-group
+        .custom-file.col-sm-5.ml-3
+        #image-box.container.bg-light
+          = f.fields_for :images do |image|
+            - if @machine.persisted? == false
+              .js-file_group.card{"data-index" => "#{image.index}"}
+                = icon('fas', 'times-circle', class: 'icon js-remove')
+                = image_tag image.object.image, width: "100%",height: "100%", class: "default btn img-btn"
+                = image.file_field :image, class: 'js-file input'
+            - if @machine.persisted?
+              .js-file_group.card{"data-index" => "#{image.index}"}
+                = icon('fas', 'times-circle', class: 'icon js-remove')
+                = image_tag image.object.image, width: "100%",class: "default btn img-btn"
+                = image.file_field :image, class: 'js-file input'
+              - if @machine.persisted?
+                = image.check_box :_destroy, data:{ index: image.index }, class: 'hidden-destroy'
+          - if @machine.persisted?
+            .js-file_group.card{"data-index" => "#{@machine.images.count}"}
+              = icon('fas', 'times-circle', class: 'icon js-remove')
+              -# .js-remove 削除
+              = image_tag "https://jp.images-monotaro.com/Monotaro3/pi/full/mono_image_na.jpg", width: "100%",class: "default btn img-btn"
+              = file_field_tag :image, name: "machine[images_attributes][#{@machine.images.count}][image]", class: 'js-file new'
+
+      .border-top.mb-5
+      %p.mt-5.ml-3 関連部品
+      .ml-3
+        = f.collection_check_boxes :part_ids, Part.all, :id, :name, class:'form-check-input'
+      .border-bottom
+      = f.submit 'Send', class: 'btn btn-success my-5 mr-5 float-right '
+
+      

@@ -1,0 +1,52 @@
+.border-bottom.py-3.mb-5.bg-dark
+  .d-flex.align-content-around
+    .ml-3
+      = icon('fas', 'angle-double-left', class: 'icon text-white')
+      =link_to "トップページ", "/",class:"py-2 rounded my-auto text-white"
+    .ml-3
+      = icon('fas', 'edit', class: 'icon text-white')
+      = link_to "編集","/repairs/#{@repair.id}/edit",class: 'p-2 text-white'
+.container.border.p-5.mb-5.bg-white
+  .d-flex.justify-content-between.mr-5
+    .repair.float-left
+      %p.border-bottom
+        修復日時：
+        = @repair.created_at.strftime('%Y/%m/%d')
+    %p.px-2.border-bottom
+      修復番号：
+      = @repair.id
+  .h3.text-center
+    修復履歴
+  .d-flex.border-bottom.mb-3{:style => "width: 30%;"}
+    %p.mr-3.m-0
+      担当者名
+    %p.m-0
+      = @user.name
+  
+  .container
+    .row.border
+      .col-2.border-right
+        %p
+          修復箇所
+      .col
+        = @repair.title
+    .row.border{:style => "height: 500px;"}
+      .col-2.border-right
+        %p
+          修復内容：
+      .col
+        = simple_format(@repair.text) 
+        -# = @repair.text
+    .row.border
+      .col-2.border-right
+        %p
+          使用部品
+      %ul.list-group.pl-3
+        - @repair.parts.each do |part|
+          %li.list-item.ml-3
+            = part.name
+    .d-flex.justify-content-end.mr-5.mt-5
+      %p
+        上長承認印
+      %p.pb-2.px-2.border-bottom
+        氏名　　　　　　　　印

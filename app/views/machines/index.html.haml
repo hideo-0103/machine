@@ -1,0 +1,16 @@
+- provide(:title, 'All machines')
+%h1 All machines
+
+
+%p 検索
+= form_tag(machines_path, :method => 'get') do
+  = text_field_tag :search, params[:search]
+  = submit_tag 'Search', :name => nil
+%ul
+  - @machines.each do |machine|
+    %li
+      = link_to machine.name, machine
+      = machine.created_at
+    = link_to "編集",machine_path(machine)
+-# %ul.machines
+-#   = render @machines

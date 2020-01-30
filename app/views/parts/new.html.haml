@@ -1,0 +1,20 @@
+.border-bottom.mb-5.bg-dark.d-flex.py-3.text-center
+  .ml-3
+    = icon('fas', 'angle-double-left', class: 'icon text-white')
+    =link_to "トップページ", "/",class:"py-2 rounded my-auto text-white"
+.wrapper.px-5
+  .header.m-5.border-bottom
+    %h1.text-center
+      部品登録
+    .text-center.text-danger
+      - if flash[:error]
+        = flash[:error]
+  .form.px-5
+    = form_for @part do |f|
+      = f.label :name,"部品名",class:"h5 "
+      = f.text_field :name,placeholder: '部品名を入力してください', class:"form-control mb-5"
+      .border-bottom.mb-5
+      = f.label :quentity,"数量",class:"h5"
+      .border-bottom.pb-5
+        = f.number_field :quentity, step: 5, value: 0, class:"form-control"
+      = f.submit 'Send', class: 'btn btn-success mt-5 float-right'

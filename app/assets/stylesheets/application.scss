@@ -1,0 +1,52 @@
+// @import "./_cssreset.scss";
+@import "font-awesome-sprockets";
+@import "./font-awesome";
+@import "bootstrap";
+
+.custom-file {
+  overflow: hidden;
+}
+.custom-file-label {
+  white-space: nowrap;
+}
+input[type="file"].file{
+  display: none;
+}
+.dropdown-menu{
+  width:200px;
+}
+
+.c{
+  height: 100%;
+  width :500px;
+  // margin: 0 auto;
+}
+
+input[type="file"]{
+  display: none;
+}
+#image-box{
+  height: 500px;
+  width: 100%;
+  overflow-x: scroll;
+  border: 3px solid #dee2e6;
+  border-radius: 4px;
+  // display: flex;
+}
+.js-file_group{
+  height: 75%;
+  width: 75%;
+  margin: 15px auto;
+  overflow-x: scroll;
+
+}
+.hidden-destroy{
+  display: none;
+}
+@import "module/user.scss";
+// @import "machine/show.scss";
+// @import "users.scss";
+// @import "repairs.scss";
+// @import "repairs/edit.scss";
+// @import "repairs/index.scss";
+// @import "repairs/show.scss";

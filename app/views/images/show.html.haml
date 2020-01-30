@@ -1,0 +1,8 @@
+.border-bottom.py-3.bg-dark
+  .d-flex
+    .ml-3
+      = icon('fas', 'angle-double-left', class: 'icon text-white')
+      =link_to "トップページ", "/",class:"py-2 rounded my-auto mr-3 text-white"
+      =link_to content_tag(:i,"戻る", class: 'fas fa-reply'), "/machines/#{@machine.id}",class:"py-2 rounded my-auto text-white"
+.container
+  %img.w-100.h-100{:src => "#{@image.image}"}

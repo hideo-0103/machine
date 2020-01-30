@@ -1,0 +1,44 @@
+.border-bottom.py-3.mb-5.bg-dark
+  .d-flex.align-content-between
+    .ml-3
+      = icon('fas', 'angle-double-left', class: 'icon text-white')
+      =link_to "トップページ", "/",class:"py-2 rounded my-auto text-white"
+.container.border.px-0.mb-5
+  .h4.text-center.mt-3 修復歴作成
+  %section.p-5.mt-3.card
+    .container.card-body
+      .text-center.text-danger
+        - if flash[:error]
+          = flash[:error]
+      %ul.nav.nav-tabs.my-5
+        %li.nav-item
+          %li 
+            .nav-link.active STEP1：フォーム入力
+          %li.nav-item
+            .nav-link.bg-light  STEP2：使用部品登録
+      .border-bottom.text-center
+        .h3.mb-3.pb-3
+          注意事項
+        %p
+          どこがどうなっていたのか、なぜそうなったのか、どう対処したのかを明確に記述してください。
+        %p.text-danger
+          修正箇所は25文字以内、修正内容は1000文字以内の入力でお願いします！
+      = form_for [@machine,@repair],local: true  do |f|
+        .form__main__title
+          .d-flex.align-items-center.mt-5
+            %p{:style => "width: 20%;"}
+              修復箇所
+            = f.text_field :title,placeholder: '',class:'form-control'
+          .border-bottom.py-3.mb-5
+          .d-flex.align-items-center
+            %p{:style => "width: 20%;"}
+              修復内容
+            = f.text_area :text,placeholder: '修復内容',class:'form-control'
+          .border-bottom.py-3.mb-5
+          %p{:style => "width: 20%;"}
+            使用部品
+          .d-flex.align-items-baseline
+            = f.collection_check_boxes :part_ids, @parts, :id, :name,class:'form-control'
+          .border-bottom.py-3.mb-5
+        .form__main__btn
+          = f.submit '次へ', class: 'btn-block p-3 btn btn-lg btn-primary mt-5'

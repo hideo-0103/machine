@@ -1,0 +1,53 @@
+.border-bottom.py-3.mb-5.bg-dark
+   .d-flex
+      .ml-3
+         = icon('fas', 'angle-double-left', class: 'icon text-white')
+         =link_to "トップページ", "/",class:"py-2 rounded my-auto text-white"
+      .dropdown
+      %a#dropdownMenuButton.text-white.ml-3.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :type => "button"}
+         メニュー
+      .dropdown-menu.py-0{"aria-labelledby" => "dropdownMenuButton"}
+         .list-group-item
+            = icon('fas', 'pen-square', class: 'icon')
+            = link_to '修復歴作成', "/machines/#{@machine.id}/repairs/new", method: :get
+         .list-group-item
+            = icon('fas', 'tools', class: 'icon')
+            = link_to "修復歴", "/machines/#{@machine.id}/repairs" 
+         .list-group-item
+            = icon('fas', 'cog', class: 'icon')
+            = link_to "編集", "/machines/#{@machine.id}/edit" 
+         .list-group-item
+            = icon('fas', 'trash-alt', class: 'icon')
+            = link_to '削除', "/machines/#{@machine.id}", method: :delete
+         .list-group-item
+            = icon('fas', 'undo-alt', class: 'icon')
+            = link_to '設備一覧へ戻る', root_path
+         .d-flex
+            .card{:style => "width: 100%;"}
+               %p.title.text-center.border-bottom.py-3.bg-light 設備部品一覧
+               - if @parts == []
+                  %p 登録部品はありません。
+               - else
+                  %ul
+                     - @parts.each do |part|
+                        %li
+                           = link_to "#{part.name}",edit_part_path(part.id)
+                           .quentity 
+                              在庫数：
+                              = part.quentity
+
+.d-flex.m-5.bg-dark
+   .card.container.px-0{:style => "width: 80%;"}
+      .h3.text-center.border-bottom.bg-light.py-3
+         = @machine.name
+      
+      .mx-auto{:style => "width: 100%;"}
+         - if @images.nil?
+            %p.text-center まだ画像が登録されていません。
+         - else
+            .a
+               - @images.each do |image|
+                  .b
+                     = link_to "/machines/#{@machine.id}/images/#{image.id}" do
+                        -# = image_tag "#{image.image}", class: "c mx-auto"
+                        %img.c.mx-auto{:src => "#{image.image}"}/

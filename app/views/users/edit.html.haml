@@ -1,0 +1,22 @@
+#account-page
+.border-bottom.mb-5.bg-dark.d-flex.py-3.text-center
+  .ml-3
+    = icon('fas', 'angle-double-left', class: 'icon text-white')
+    =link_to "トップページ", "/",class:"py-2 rounded my-auto text-white"
+.container
+  %section.p-5.my-5.card
+    %h2.mb-5.text-center アカウントの編集
+    .container.card-body
+      %ul.nav.nav-tabs.my-5
+        %li.nav-item
+          = link_to "アカウントの編集",'', class: 'btn nav-link active'
+        %li.nav-item
+          = link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'btn nav-link'
+      = form_for(current_user) do |f|
+        = f.label :name
+        = f.text_field :name, autofocus: true,class:'form-control',style:'border:none;'
+        .border-bottom.py-3.mb-5
+        = f.label :email
+        = f.email_field :email,class:'form-control',style:'border:none;'
+        .border-bottom.py-3.mb-5
+        = f.submit "Update", class: 'btn btn-lg btn-primary btn-block mt-5'

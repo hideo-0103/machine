@@ -1,0 +1,31 @@
+.h-100.bg-light
+  .text-center.border-bottom.py-3.mb-5.bg-dark
+    = render partial:"shared/menu"
+    .h1.text-light
+      設備管理システム
+  
+  .container.d-flex.px-5
+
+    .border.ml-5{:style => "width: 100%;"}
+      %ul.list-group
+        %p.mx-5.h3
+          設備一覧
+        #nav-search.py-3.bg-white.border
+          %p.mx-5.font-weight-bold 設備の検索
+          .mx-5
+            = form_tag(root_path, :method => 'get') do
+              .input-group
+                = text_field_tag :search, params[:search],placeholder: "キーワード検索", class: "form-control"
+                %span.input-group-btn
+                  = submit_tag '検索', :name => nil, class: "btn btn-primary"
+        - if @machines == []
+          %p.text-center 設備が登録されておりません。
+        - else
+          - @machines.each do |machine|
+            %li.list-group-item.border-left-0
+              %p.d-inline-block.mr-3.ml-4
+                = "id:#{machine.id}"
+              = link_to "#{machine.name}", "/machines/#{machine.id}"
+              
+    
+

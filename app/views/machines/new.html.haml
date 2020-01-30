@@ -1,0 +1,8 @@
+.border-bottom.mb-5.bg-dark.d-flex.py-3.text-center
+  .ml-3
+    = icon('fas', 'angle-double-left', class: 'icon text-white')
+    =link_to "トップページ", "/",class:"py-2 rounded my-auto text-white"
+.text-center.text-danger
+  - if flash[:error]
+    = flash[:error]
+= render "form", machine: @machine
