@@ -21,7 +21,7 @@
             - if @machine.persisted?
               .js-file_group.card{"data-index" => "#{image.index}"}
                 = icon('fas', 'times-circle', class: 'icon js-remove')
-                = image_tag image.object.image, width: "100%",class: "default btn img-btn"
+                = image_tag image.object.image, width: "100%",class: "default btn img-btn",data:{"index" => "#{image.index}"}
                 = image.file_field :image, class: 'js-file input'
               - if @machine.persisted?
                 = image.check_box :_destroy, data:{ index: image.index }, class: 'hidden-destroy'

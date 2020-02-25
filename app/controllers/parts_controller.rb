@@ -7,6 +7,7 @@ class PartsController < ApplicationController
   
   def new
     @part = Part.new
+    @machines = Machine.all
   end
   def create
     @part = Part.new(part_params)
@@ -40,10 +41,14 @@ class PartsController < ApplicationController
     redirect_to "/parts"
   end
 
+  def search
+    @machine = Machine.search(params[:keyword])
+  end
+  
   private
 
   def part_params
-    params.require(:part).permit(:name, :quentity, :replenishment)
+    params.require(:part).permit(:name, :quentity, :replenishment, {:machine_ids => []})
   end
 
   def set_part

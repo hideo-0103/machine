@@ -17,12 +17,12 @@
 //= require bootstrap-sprockets
 //= require turbolinks
 //= require_tree .
+//= require jquery-fileupload/basic
 $(function() {
   jQuery(document).on('turbolinks:load',function() {
   $('.a').slick();
   });
   $('.a').slick();
-
   jQuery(document).bind('ready ajaxComplete', function() {
     $('.a').slick();
   });

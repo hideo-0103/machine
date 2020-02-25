@@ -17,4 +17,11 @@
       = f.label :quentity,"数量",class:"h5"
       .border-bottom.pb-5
         = f.number_field :quentity, step: 5, value: 0, class:"form-control"
+      .ml-3
+        %p 検索
+        = form_tag(new_part_path, :method => 'get') do
+          = text_field_tag :search, params[:search]
+          = submit_tag 'Search', :name => nil
+        %ul
+          
       = f.submit 'Send', class: 'btn btn-success mt-5 float-right'
