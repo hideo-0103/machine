@@ -49,10 +49,6 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
 
-group :development, :test do
-  gem 'sqlite3' #do ~ end内部に追加。他のgemは残してください。
-  gem 'pg'
-end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
